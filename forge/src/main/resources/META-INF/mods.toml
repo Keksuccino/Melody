@@ -1,0 +1,38 @@
+# The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
+modLoader="javafml" #mandatory
+# A version range to match for said mod loader - for regular FML @Mod it will be the forge version
+loaderVersion="[45,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+# The mod license
+license="MIT"
+# A list of mods - how many allowed here is determined by the individual mod loader
+[[mods]] #mandatory
+# The modid of the mod
+modId="melody" #mandatory
+# The version number of the mod - there's a few well known ${} variables useable here or just hardcode it
+version="${file.jarVersion}" #mandatory
+# A display name for the mod
+displayName="Melody" #mandatory
+# A text field displayed in the mod UI
+authors="Keksuccino" #optional
+logoFile="melody_logo_128x128.png"
+# The description text for the mod (multi line!) (#mandatory)
+description='''OpenAL-based library mod for playing background music.
+
+COPYRIGHT:
+
+> Melody © Copyright 2023 Keksuccino.
+  Melody is licensed under MIT.'''
+
+[[dependencies.melody]]
+modId="forge"
+mandatory=true
+versionRange="[45.0.0,)"
+ordering="NONE"
+side="CLIENT"
+
+[[dependencies.melody]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.19.4,)"
+ordering="NONE"
+side="CLIENT"
