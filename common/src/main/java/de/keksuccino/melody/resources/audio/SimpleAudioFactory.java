@@ -57,10 +57,10 @@ public class SimpleAudioFactory {
                 clip.closeQuietly();
                 throw new MelodyAudioException("Failed to create OGG audio clip! ResourceLocation parsing failed: " + audioSource);
             }
-            Optional<Resource> resource = Minecraft.getInstance().getResourceManager().getResource(location);
+            Optional<Resource> resource = getResource(location);
             if (resource.isPresent()) {
                 try {
-                    final InputStream in = resource.get().open();
+                    final InputStream in = resource.get().getInputStream();
                     CompletableFuture<ALAudioClip> completableFuture = new CompletableFuture<>();
                     new Thread(() -> {
                         Exception ex = tryCreateAndSetOggStaticBuffer(clip, in);
@@ -166,10 +166,10 @@ public class SimpleAudioFactory {
                 clip.closeQuietly();
                 throw new MelodyAudioException("Failed to create WAV audio clip! ResourceLocation parsing failed: " + audioSource);
             }
-            Optional<Resource> resource = Minecraft.getInstance().getResourceManager().getResource(location);
+            Optional<Resource> resource = getResource(location);
             if (resource.isPresent()) {
                 try {
-                    final InputStream in = resource.get().open();
+                    final InputStream in = resource.get().getInputStream();
                     CompletableFuture<ALAudioClip> completableFuture = new CompletableFuture<>();
                     new Thread(() -> {
                         Exception ex = tryCreateAndSetWavStaticBuffer(clip, in);
@@ -238,6 +238,13 @@ public class SimpleAudioFactory {
             }
         }
 
+    }
+
+    private static Optional<Resource> getResource(@NotNull ResourceLocation location) {
+        try {
+            return Optional.of(Minecraft.getInstance().getResourceManager().getResource(location));
+        } catch (Exception ignore) {}
+        return Optional.empty();
     }
 
     @Nullable
