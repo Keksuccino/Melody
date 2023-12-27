@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "id": "melody",
-  "version": "${version}",
+  "version": "${mod_version}",
   "name": "Melody",
   "description": "OpenAL-based library mod for playing background music. | Melody © Copyright 2023 Keksuccino. Melody is licensed under MIT.",
-  "environment": "client",
+  "environment": "*",
   "authors": [
     "Keksuccino"
   ],
@@ -31,9 +31,9 @@
     }
   },
   "depends": {
-    "fabricloader": ">=0.13.3",
-    "fabric": ">=0.58.0",
-    "minecraft": ">=1.19.4",
+    "fabricloader": ">=0.15.1",
+    "fabric": ">=0.91.0",
+    "minecraft": ">=1.20.1",
     "java": ">=17"
   }
 }

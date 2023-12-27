@@ -5,7 +5,13 @@ plugins {
     id 'org.spongepowered.mixin'
 }
 base {
-    archivesName = "${mod_name}-forge-${minecraft_version}"
+    archivesName = "${mod_id}"
+}
+jar {
+    archiveFileName = "${mod_id}.jar"
+}
+sourcesJar {
+    archiveFileName ="${mod_id}-sources.jar"
 }
 mixin {
     add(sourceSets.main, "${mod_id}.refmap.json")
@@ -64,7 +70,6 @@ dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
     compileOnly project(":common")
     annotationProcessor("org.spongepowered:mixin:0.8.5-SNAPSHOT:processor")
-    implementation fg.deobf("curse.maven:load-my-resources-forge-534502:4203277")
 }
 
 tasks.withType(JavaCompile).configureEach {
