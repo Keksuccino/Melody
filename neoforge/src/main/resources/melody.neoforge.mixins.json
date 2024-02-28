@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "de.keksuccino.melody.mixin.mixins.neoforge",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "refmap": "melody.refmap.json",
+  "plugin": "de.keksuccino.melody.mixin.MelodyMixinPlugin",
+  "minVersion": "0.8"
+}

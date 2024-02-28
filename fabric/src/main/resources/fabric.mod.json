@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
-  "id": "melody",
+  "id": "${mod_id}",
   "version": "${mod_version}",
-  "name": "Melody",
-  "description": "OpenAL-based library mod for playing background music. | Melody © Copyright 2023 Keksuccino. Melody is licensed under MIT.",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
   "environment": "*",
   "authors": [
-    "Keksuccino"
+    "${mod_authors}"
   ],
-  "contributors": [],
+  "contributors": [
+  ],
   "contact": {},
-  "license": "MIT",
-  "icon": "melody_logo_128x128.png",
+  "license": "${mod_license}",
+  "icon": "${mod_id}_logo_128x128.png",
   "entrypoints": {
     "main": [
       "de.keksuccino.melody.MelodyFabric"
@@ -20,8 +21,8 @@
     "server": []
   },
   "mixins": [
-    "melody.mixins.json",
-    "melody.fabric.mixins.json"
+    "${mod_id}.mixins.json",
+    "${mod_id}.fabric.mixins.json"
   ],
   "custom": {
     "modmenu": {
@@ -31,9 +32,9 @@
     }
   },
   "depends": {
-    "fabricloader": ">=0.15.1",
-    "fabric": ">=0.88.1",
-    "minecraft": ">=1.20.1",
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric": ">=${fabric_short_version}",
+    "minecraft": ">=${minecraft_version}",
     "java": ">=17"
   }
 }
