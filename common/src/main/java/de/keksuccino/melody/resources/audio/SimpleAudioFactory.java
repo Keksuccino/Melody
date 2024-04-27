@@ -1,11 +1,12 @@
 package de.keksuccino.melody.resources.audio;
 
-import com.mojang.blaze3d.audio.OggAudioStream;
 import com.mojang.blaze3d.systems.RenderSystem;
 import de.keksuccino.melody.resources.audio.openal.ALAudioBuffer;
 import de.keksuccino.melody.resources.audio.openal.ALAudioClip;
 import de.keksuccino.melody.resources.audio.openal.ALUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.sounds.AudioStream;
+import net.minecraft.client.sounds.JOrbisAudioStream;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.Resource;
 import org.apache.commons.io.IOUtils;
@@ -242,10 +243,10 @@ public class SimpleAudioFactory {
 
     @Nullable
     private static Exception tryCreateAndSetOggStaticBuffer(@NotNull ALAudioClip setTo, @NotNull InputStream in) {
-        OggAudioStream stream = null;
+        JOrbisAudioStream stream = null;
         Exception exception = null;
         try {
-            stream = new OggAudioStream(in);
+            stream = new JOrbisAudioStream(in);
             ByteBuffer byteBuffer = stream.readAll();
             ALAudioBuffer audioBuffer = new ALAudioBuffer(byteBuffer, stream.getFormat());
             setTo.setStaticBuffer(audioBuffer);
