@@ -1,27 +1,27 @@
 package de.keksuccino.melody.resources.audio;
 
-import com.mojang.blaze3d.audio.OggAudioStream;
-import com.mojang.blaze3d.systems.RenderSystem;
-import de.keksuccino.melody.resources.audio.openal.ALAudioBuffer;
-import de.keksuccino.melody.resources.audio.openal.ALAudioClip;
-import de.keksuccino.melody.resources.audio.openal.ALUtils;
-import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.packs.resources.Resource;
-import org.apache.commons.io.IOUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import java.io.*;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.ByteBuffer;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
+import com.mojang.blaze3d.audio.OggAudioStream;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import com.mojang.blaze3d.systems.RenderSystem;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import de.keksuccino.melody.resources.audio.openal.ALAudioBuffer;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import de.keksuccino.melody.resources.audio.openal.ALAudioClip;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import de.keksuccino.melody.resources.audio.openal.ALUtils;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import net.minecraft.client.Minecraft;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import net.minecraft.resources.ResourceLocation;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import net.minecraft.server.packs.resources.Resource;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import org.apache.commons.io.IOUtils;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import org.apache.logging.log4j.LogManager;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import org.apache.logging.log4j.Logger;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import org.jetbrains.annotations.NotNull;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import org.jetbrains.annotations.Nullable;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import javax.sound.sampled.AudioInputStream;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import javax.sound.sampled.AudioSystem;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import java.io.*;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import java.net.HttpURLConnection;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import java.net.URL;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import java.nio.ByteBuffer;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import java.util.Objects;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import java.util.Optional;https://www.youtube.com/watch?v=niNDSimJ1Ds
+import java.util.concurrent.CompletableFuture;https://www.youtube.com/watch?v=niNDSimJ1Ds
 
 @SuppressWarnings("unused")
 public class SimpleAudioFactory {
