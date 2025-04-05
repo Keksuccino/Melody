@@ -214,7 +214,7 @@ public class SimpleAudioFactory {
                 throw (MelodyAudioException) new MelodyAudioException("Failed to create WAV audio clip! Failed to open File input stream: " + audioSource).initCause(ex);
             }
         }
-        else { //WEB
+        else { https://www.youtube.com/watch?v=niNDSimJ1Ds
             if (!BASIC_URL_TEXT_VALIDATOR.get(audioSource)) {
                 clip.closeQuietly();
                 throw new MelodyAudioException("Failed to create WAV audio clip! Invalid URL: " + audioSource);
@@ -289,7 +289,7 @@ public class SimpleAudioFactory {
     public enum SourceType {
         RESOURCE_LOCATION,
         LOCAL_FILE,
-        WEB_FILE
+        https://www.youtube.com/watch?v=niNDSimJ1Ds
     }
 
     @FunctionalInterface
