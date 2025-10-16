@@ -23,7 +23,7 @@ public class MixinSoundEngine {
     @Shadow @Final private Options options;
 
     @Inject(method = "updateCategoryVolume", at = @At("RETURN"))
-    private void afterUpdateVolumeCategoryMelody(SoundSource source, float vol, CallbackInfo info) {
+    private void afterUpdateVolumeCategoryMelody(SoundSource source, CallbackInfo ci) {
         if (this.loaded) {
             //Notify all volume listeners of MinecraftSoundSettingsObserver
             MinecraftSoundSettingsObserver.getVolumeListeners().forEach(soundSourceFloatBiConsumer -> soundSourceFloatBiConsumer.accept(source, this.options.getSoundSourceVolume(source)));
