@@ -162,10 +162,8 @@ public class ALAudioClip implements AudioClip {
         if (volume < 0.0F) volume = 0.0F;
         this.volume = volume;
         float actualVolume = this.volume;
-        if (this.soundChannel != SoundSource.MASTER) {
-            float soundSourceVolume = Minecraft.getInstance().options.getSoundSourceVolume(this.soundChannel);
-            actualVolume = actualVolume * soundSourceVolume; //Calculate percentage of volume by this audio's sound channel
-        }
+        float soundSourceVolume = Minecraft.getInstance().options.getFinalSoundSourceVolume(this.soundChannel);
+        actualVolume = actualVolume * soundSourceVolume; //Calculate percentage of volume by this audio's sound channel
         AL10.alSourcef(this.source, AL10.AL_GAIN, Math.min(1.0F, Math.max(0.0F, actualVolume)));
         ALErrorHandler.checkOpenAlError();
     }
