@@ -5,9 +5,8 @@ import de.keksuccino.melody.resources.audio.openal.ALAudioBuffer;
 import de.keksuccino.melody.resources.audio.openal.ALAudioClip;
 import de.keksuccino.melody.resources.audio.openal.ALUtils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.sounds.AudioStream;
 import net.minecraft.client.sounds.JOrbisAudioStream;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.resources.Resource;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -53,10 +52,10 @@ public class SimpleAudioFactory {
         if (clip == null) throw new MelodyAudioException("Failed to create OGG audio clip! Clip was NULL for: " + audioSource);
 
         if (sourceType == SourceType.RESOURCE_LOCATION) {
-            ResourceLocation location = ResourceLocation.tryParse(audioSource);
+            Identifier location = Identifier.tryParse(audioSource);
             if (location == null) {
                 clip.closeQuietly();
-                throw new MelodyAudioException("Failed to create OGG audio clip! ResourceLocation parsing failed: " + audioSource);
+                throw new MelodyAudioException("Failed to create OGG audio clip! Identifier parsing failed: " + audioSource);
             }
             Optional<Resource> resource = Minecraft.getInstance().getResourceManager().getResource(location);
             if (resource.isPresent()) {
@@ -75,11 +74,11 @@ public class SimpleAudioFactory {
                     return completableFuture;
                 } catch (Exception ex) {
                     clip.closeQuietly();
-                    throw (MelodyAudioException) new MelodyAudioException("Failed to create OGG audio clip! Failed to open ResourceLocation input stream: " + audioSource).initCause(ex);
+                    throw (MelodyAudioException) new MelodyAudioException("Failed to create OGG audio clip! Failed to open Identifier input stream: " + audioSource).initCause(ex);
                 }
             } else {
                 clip.closeQuietly();
-                throw new MelodyAudioException("Failed to create OGG audio clip! Resource for ResourceLocation not found: " + audioSource);
+                throw new MelodyAudioException("Failed to create OGG audio clip! Resource for Identifier not found: " + audioSource);
             }
         }
         else if (sourceType == SourceType.LOCAL_FILE) {
@@ -162,10 +161,10 @@ public class SimpleAudioFactory {
         if (clip == null) throw new MelodyAudioException("Failed to create WAV audio clip! Clip was NULL for: " + audioSource);
 
         if (sourceType == SourceType.RESOURCE_LOCATION) {
-            ResourceLocation location = ResourceLocation.tryParse(audioSource);
+            Identifier location = Identifier.tryParse(audioSource);
             if (location == null) {
                 clip.closeQuietly();
-                throw new MelodyAudioException("Failed to create WAV audio clip! ResourceLocation parsing failed: " + audioSource);
+                throw new MelodyAudioException("Failed to create WAV audio clip! Identifier parsing failed: " + audioSource);
             }
             Optional<Resource> resource = Minecraft.getInstance().getResourceManager().getResource(location);
             if (resource.isPresent()) {
@@ -184,11 +183,11 @@ public class SimpleAudioFactory {
                     return completableFuture;
                 } catch (Exception ex) {
                     clip.closeQuietly();
-                    throw (MelodyAudioException) new MelodyAudioException("Failed to create WAV audio clip! Failed to open ResourceLocation input stream: " + audioSource).initCause(ex);
+                    throw (MelodyAudioException) new MelodyAudioException("Failed to create WAV audio clip! Failed to open Identifier input stream: " + audioSource).initCause(ex);
                 }
             } else {
                 clip.closeQuietly();
-                throw new MelodyAudioException("Failed to create WAV audio clip! Resource for ResourceLocation not found: " + audioSource);
+                throw new MelodyAudioException("Failed to create WAV audio clip! Resource for Identifier not found: " + audioSource);
             }
         }
         else if (sourceType == SourceType.LOCAL_FILE) {
