@@ -10,7 +10,6 @@
     "defaultRequire": 1
   },
   "plugin": "de.keksuccino.melody.mixin.MelodyMixinPlugin",
-  "minVersion": "0.8",
-  "refmap": "melody.refmap.json"
+  "minVersion": "0.8"
 }
   

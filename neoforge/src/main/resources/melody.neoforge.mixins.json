@@ -9,7 +9,6 @@
   "injectors": {
     "defaultRequire": 1
   },
-  "refmap": "melody.refmap.json",
   "plugin": "de.keksuccino.melody.mixin.MelodyMixinPlugin",
   "minVersion": "0.8"
 }
