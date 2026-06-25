@@ -1,7 +1,7 @@
 package de.keksuccino.melody.platform;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import de.keksuccino.melody.mixin.mixins.common.client.IMixinKeyMapping;
+import de.keksuccino.melody.mixin.mixins.common.client.AccessorMixinKeyMapping;
 import de.keksuccino.melody.platform.services.IPlatformHelper;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -68,7 +68,7 @@ public class FabricPlatformHelper implements IPlatformHelper {
 
     @Override
     public InputConstants.Key getKeyMappingKey(KeyMapping keyMapping) {
-        return ((IMixinKeyMapping) keyMapping).get_key_Melody();
+        return ((AccessorMixinKeyMapping) keyMapping).get_key_Melody();
     }
 
 }

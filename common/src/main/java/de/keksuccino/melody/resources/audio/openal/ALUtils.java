@@ -1,8 +1,8 @@
 package de.keksuccino.melody.resources.audio.openal;
 
 import com.mojang.blaze3d.audio.Library;
-import de.keksuccino.melody.mixin.mixins.common.client.IMixinSoundEngine;
-import de.keksuccino.melody.mixin.mixins.common.client.IMixinSoundManager;
+import de.keksuccino.melody.mixin.mixins.common.client.AccessorMixinSoundEngine;
+import de.keksuccino.melody.mixin.mixins.common.client.AccessorMixinSoundManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.sounds.SoundEngine;
 import net.minecraft.client.sounds.SoundManager;
@@ -21,12 +21,12 @@ public class ALUtils {
 
     /**
      * OpenAL gets initialized in {@link Library#init(String, boolean)}, which gets called when (re-)loading the {@link SoundEngine},
-     * so this method checks for {@link IMixinSoundEngine#getLoadedMelody()}, to see if the {@link SoundEngine} is loaded.
+     * so this method checks for {@link AccessorMixinSoundEngine#getLoadedMelody()}, to see if the {@link SoundEngine} is loaded.
      */
     public static boolean isOpenAlReady() {
         SoundManager manager = Minecraft.getInstance().getSoundManager();
-        SoundEngine engine = ((IMixinSoundManager)manager).getSoundEngineMelody();
-        return ((IMixinSoundEngine)engine).getLoadedMelody();
+        SoundEngine engine = ((AccessorMixinSoundManager)manager).getSoundEngineMelody();
+        return ((AccessorMixinSoundEngine)engine).getLoadedMelody();
     }
 
     public static int getAudioFormatAsOpenAL(@NotNull AudioFormat audioFormat) throws ALException {

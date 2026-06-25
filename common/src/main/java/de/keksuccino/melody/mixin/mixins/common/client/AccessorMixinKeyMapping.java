@@ -6,7 +6,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.gen.Accessor;
 
 @Mixin(KeyMapping.class)
-public interface IMixinKeyMapping {
+public interface AccessorMixinKeyMapping {
 
     @Accessor("key")
     InputConstants.Key get_key_Melody();
