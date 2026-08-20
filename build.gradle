@@ -11,7 +11,7 @@ subprojects {
     java.toolchain.languageVersion = JavaLanguageVersion.of(21)
     java.withSourcesJar()
 //    java.withJavadocJar()
-        
+
     jar {
         from(rootProject.file("LICENSE")) {
             rename { "${it}_${mod_name}" }
@@ -39,6 +39,13 @@ subprojects {
     }
 
     repositories {
+        maven {
+            name = 'Mojang Libraries'
+            url = 'https://libraries.minecraft.net'
+            content {
+                includeGroup 'org.lwjgl'
+            }
+        }
         mavenCentral()
         maven {
             name = 'Sponge / Mixin'
@@ -61,6 +68,13 @@ subprojects {
             }
         }
         maven { url 'https://jitpack.io' }
+        maven {
+            name = 'ParchmentMC Maven'
+            url = 'https://maven.parchmentmc.org'
+            content {
+                includeGroupByRegex 'org\\.parchmentmc(\\..*)?'
+            }
+        }
     }
 
     tasks.withType(JavaCompile).configureEach {
@@ -82,10 +96,13 @@ subprojects {
                 "fabric_version": fabric_version,
                 "fabric_short_version": fabric_short_version,
                 "fabric_loader_version": fabric_loader_version,
-                "forge_version": forge_version,
-                "forge_loader_version": forge_loader_version,
                 "neoforge_version": neoforge_version,
-                "neoforge_loader_version": neoforge_loader_version
+                "neoforge_loader_version": neoforge_loader_version,
+                "parchment_version": parchment_version,
+                "parchment_mc_version": parchment_mc_version,
+                "mixin_extras_version": mixin_extras_version,
+                "fabric_loom_version": fabric_loom_version,
+                "neogradle_version": neogradle_version
         ]
         filesMatching(['pack.mcmeta', 'fabric.mod.json', 'META-INF/mods.toml', 'META-INF/neoforge.mods.toml', '*.mixins.json']) {
             expand expandProps

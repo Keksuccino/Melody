@@ -3,7 +3,7 @@ plugins {
     id 'java'
     id 'idea'
     id 'maven-publish'
-    id 'fabric-loom' version '1.6-SNAPSHOT'
+    id "fabric-loom" version "$fabric_loom_version"
 }
 
 base {
@@ -12,13 +12,19 @@ base {
 
 dependencies {
     minecraft "com.mojang:minecraft:${minecraft_version}"
-    mappings loom.officialMojangMappings()
+    mappings loom.layered() {
+        officialMojangMappings()
+        parchment("org.parchmentmc.data:parchment-${parchment_mc_version}:${parchment_version}@zip")
+    }
     modImplementation "net.fabricmc:fabric-loader:${fabric_loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${fabric_version}"
     implementation group: 'com.google.code.findbugs', name: 'jsr305', version: '3.0.1'
     implementation project(":common")
-    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:0.3.2")))
+    include(implementation(annotationProcessor("io.github.llamalad7:mixinextras-fabric:${mixin_extras_version}")))
     modImplementation "maven.modrinth:modmenu:11.0.0-beta.1"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher:1.10.2"
 }
 
 loom {
@@ -44,11 +50,26 @@ loom {
     }
 }
 
-tasks.withType(JavaCompile).configureEach {
+tasks.named("compileJava", JavaCompile) {
     source(project(":common").sourceSets.main.allSource)
+}
+tasks.named("compileTestJava", JavaCompile) {
+    enabled = true
+    source(sourceSets.test.java)
+    classpath = sourceSets.test.compileClasspath
 }
 tasks.withType(Javadoc).configureEach {
     source(project(":common").sourceSets.main.allJava)
+}
+tasks.named("test", Test) {
+    enabled = true
+    testClassesDirs = sourceSets.test.output.classesDirs
+    classpath = sourceSets.test.runtimeClasspath
+    workingDir(layout.buildDirectory.dir("test-working-directory"))
+    doFirst {
+        workingDir.mkdirs()
+    }
+    useJUnitPlatform()
 }
 tasks.named("sourcesJar", Jar) {
     from(project(":common").sourceSets.main.allSource)

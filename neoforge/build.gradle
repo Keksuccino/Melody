@@ -2,7 +2,7 @@
 plugins {
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.145'
+    id "net.neoforged.gradle.userdev" version "$neogradle_version"
     id 'java-library'
 }
 base {
@@ -27,7 +27,7 @@ runs {
     server {
 	    workingDirectory project.file('../run_server')
         systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        programArgument '--nogui'
+        arguments.add('--nogui')
     }
 }
 
@@ -38,11 +38,28 @@ test {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+subsystems {
+    parchment {
+        minecraftVersion = "${parchment_mc_version}"
+        mappingsVersion = "${parchment_version}"
+    }
+}
+
 dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.10.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.10.2")
     implementation "net.neoforged:neoforge:${neoforge_version}"
     compileOnly project(":common")
+}
+
+// Common uses Loom for its mapped Minecraft compile classpath; do not leak Fabric Loader into NeoForge's runtime.
+configurations {
+    runtimeClasspath {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
+    developmentRuntimeClasspath {
+        exclude group: 'net.fabricmc', module: 'fabric-loader'
+    }
 }
 
 // NeoGradle compiles the game, but we don't want to add our common code to the game's code
