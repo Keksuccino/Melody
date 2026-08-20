@@ -1,0 +1,20 @@
+{
+  "config_version": 1,
+  "projects": {
+    "melody": {
+      "changelog_url": "https://github.com/Keksuccino/Melody/blob/main/changelog.txt",
+      "curseforge_project_id": "938643",
+      "dependencies": {
+        "fabric": [
+          "fabric-api"
+        ],
+        "neoforge": []
+      },
+      "mandatory_environments": [],
+      "modrinth_project_id": "CVT4pFB2",
+      "supported_environments": [
+        "client"
+      ]
+    }
+  }
+}
